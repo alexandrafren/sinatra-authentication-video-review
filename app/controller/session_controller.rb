@@ -4,4 +4,9 @@ class SessionsController < ApplicationController
     erb :'sessions/login'
   end
 
+  post '/sessions' do
+    session[:email] = params[:email]
+    redirect '/posts'
+  end
+
 end
