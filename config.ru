@@ -1,5 +1,10 @@
 require_relative './config/enviornment'
 
-if ActiveRecord::Migrator.needs_migration?
-  raise "Migrations are pending. Run db:migrate to resolve this issue."
+require './config/enviornment'
+
+if ActiveRecord::Base.connection.migration_context.needs_migration?
+  raise 'Migrations are pending. Run db:migrate to resolve this issue.'
 end
+
+use Rack::MethodOverride
+run ApplicationController
