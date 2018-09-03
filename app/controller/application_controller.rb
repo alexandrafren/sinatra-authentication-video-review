@@ -17,9 +17,11 @@ class ApplicationController < Sinatra::Base
       !!session[:email]
     end
 
-    def login(email)
+    def login(email, password)
       if user = User.find_by(:email => email)
-        session[:email] = user.email
+        if user.authenticate(password)
+          session[:email] = user.email
+        end
       else
         redirect '/login'
     end

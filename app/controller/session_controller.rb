@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   post '/sessions' do
-    Helper.login
+    Helper.login(params[:email], params[:password])
     redirect '/posts'
   end
 
