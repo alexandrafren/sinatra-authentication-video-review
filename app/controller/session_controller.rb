@@ -5,8 +5,12 @@ class SessionsController < ApplicationController
   end
 
   post '/sessions' do
-    session[:email] = params[:email]
+    Helper.login
     redirect '/posts'
+  end
+
+  get '/logout' do
+    Helper.logout
   end
 
 end
